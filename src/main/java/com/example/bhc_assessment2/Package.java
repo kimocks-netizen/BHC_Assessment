@@ -8,6 +8,7 @@ class Package {
     long timestamp; // Track when the package was added
 
     Package(String serialNumber, String qualityMark, double mass, boolean isLoose) {
+        super(serialNumber, qualityMark); // Calls ShipmentItem constructor
         this.serialNumber = serialNumber;
         this.qualityMark = qualityMark;
         this.mass = mass;
