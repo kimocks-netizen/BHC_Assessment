@@ -8,6 +8,7 @@ class Pallet {
     private int capacity;
 
     Pallet(String serialNumber, String qualityMark, int capacity) {
+        super(serialNumber, qualityMark); // Calls ShipmentItem constructor
         this.serialNumber = serialNumber;
         this.qualityMark = qualityMark;
         this.capacity = capacity;
