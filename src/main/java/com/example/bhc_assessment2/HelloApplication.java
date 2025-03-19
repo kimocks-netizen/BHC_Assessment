@@ -144,6 +144,13 @@ public class HelloApplication extends Application {
                 }
             });
 
+            offloadNewestButton.setOnAction(e -> {
+                if (warehouse.offloadNewestPackage()) {
+                    System.out.println("Newest package offloaded successfully.");
+                } else {
+                    System.out.println("Failed to offload newest package.");
+                }
+            });
             sendToWarehouseButton.setOnAction(e -> {
                 if (cartonsAdded > 0) {
                     double totalWeight = cartonsAdded * 10; // Calculate total weight dynamically
