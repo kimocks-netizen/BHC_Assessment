@@ -14,4 +14,9 @@ class Package {
         this.isLoose = isLoose;
         this.timestamp = System.currentTimeMillis(); // Set timestamp when package is created
     }
+    // Getter for timestamp
+    //FIFI - FIRST IN FIRST OUT  AND LIFO - LAST IN LAST OUT
+    public long getTimestamp() {
+        return timestamp;
+    }
 }
