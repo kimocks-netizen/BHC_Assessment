@@ -134,6 +134,15 @@ public class HelloApplication extends Application {
                     System.out.println("No cartons to remove.");
                 }
             });
+            //events for 2 added butons:
+            // Event Handlers for Offloading Buttons
+            offloadOldestButton.setOnAction(e -> {
+                if (warehouse.offloadOldestPackage()) {
+                    System.out.println("Oldest package offloaded successfully.");
+                } else {
+                    System.out.println("Failed to offload oldest package.");
+                }
+            });
 
             sendToWarehouseButton.setOnAction(e -> {
                 if (cartonsAdded > 0) {
