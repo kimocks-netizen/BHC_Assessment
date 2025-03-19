@@ -42,6 +42,63 @@ class Warehouse {
             logs.add("Warning: Attempted to update warehouse capacity by " + weight + " kgs, but capacity would be exceeded.");
         }
     }
+    //FIFI - FIRST IN FIRST OUT  AND LIFO - LAST IN LAST OUT
+    // Get all packages in the warehouse
+    List<Package> getAllPackages() {
+        return allPackages;
+    }
+
+    // Sort packages by timestamp (oldest first)
+    List<Package> getPackagesOldestFirst() {
+        List<Package> sortedPackages = new ArrayList<>(allPackages);
+        sortedPackages.sort(Comparator.comparingLong(Package::getTimestamp));
+        return sortedPackages;
+    }
+
+    // Sort packages by timestamp (newest first)
+    List<Package> getPackagesNewestFirst() {
+        List<Package> sortedPackages = new ArrayList<>(allPackages);
+        sortedPackages.sort(Comparator.comparingLong(Package::getTimestamp).reversed());
+        return sortedPackages;
+    }
+    // Offload the oldest package
+    boolean offloadOldestPackage() {
+        if (allPackages.isEmpty()) {
+            System.out.println("No packages to offload.");
+            return false;
+        }
+
+        // Get the oldest package
+        Package oldestPackage = getPackagesOldestFirst().get(0);
+
+        // Remove the package from the warehouse
+        if (removePackage(oldestPackage.serialNumber)) {
+            System.out.println("Offloaded oldest package: " + oldestPackage.serialNumber);
+            return true;
+        } else {
+            System.out.println("Failed to offload oldest package.");
+            return false;
+        }
+    }
+    // Offload the newest package
+    boolean offloadNewestPackage() {
+        if (allPackages.isEmpty()) {
+            System.out.println("No packages to offload.");
+            return false;
+        }
+
+        // Get the newest package
+        Package newestPackage = getPackagesNewestFirst().get(0);
+
+        // Remove the package from the warehouse
+        if (removePackage(newestPackage.serialNumber)) {
+            System.out.println("Offloaded newest package: " + newestPackage.serialNumber);
+            return true;
+        } else {
+            System.out.println("Failed to offload newest package.");
+            return false;
+        }
+    }
 
     // Remove a package from the warehouse by serial number
     boolean removePackage(String serialNumber) {
